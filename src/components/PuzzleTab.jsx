@@ -29,9 +29,10 @@ export default function PuzzleTab({ puzzleType, entries }) {
         <div className="video-wrapper">
           <VideoPlayer src={`${CLOUDFRONT_URL}/${selectedEntry.recordingKey}`} />
           <div className="solve-meta">
-            <span>Solve time: <strong>{(selectedEntry.solveTimeMs / 1000).toFixed(1)}s</strong></span>
-            {puzzleType === 'PINPOINT' && (
+            {puzzleType === 'PINPOINT' ? (
               <span>Guesses: <strong>{selectedEntry.guessCount}</strong></span>
+            ) : (
+              <span>Solve time: <strong>{(selectedEntry.solveTimeMs / 1000).toFixed(1)}s</strong></span>
             )}
           </div>
         </div>
