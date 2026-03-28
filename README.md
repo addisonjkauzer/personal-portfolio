@@ -1,16 +1,55 @@
-# React + Vite
+# LinkedIn Puzzle Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A personal portfolio site that showcases daily automated solves of LinkedIn's daily puzzles — with solve recordings and performance metrics.
 
-Currently, two official plugins are available:
+## Puzzles Tracked
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **ZIP** — connect the dots
+- **Sudoku** — classic number placement
+- **Tango** — logic grid puzzle
+- **Queens** — non-attacking queens placement
+- **Pinpoint** — word category guessing
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- [React 19](https://react.dev/) + [Vite](https://vite.dev/)
+- [Recharts](https://recharts.org/) for solve-time charts
+- CloudFront CDN for serving video recordings and metadata
 
-## Expanding the ESLint configuration
+## Project Structure
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```
+src/
+  components/
+    PuzzleDashboard.jsx   # Tab navigation across puzzle types
+    PuzzleTab.jsx         # Per-puzzle entry list + chart
+    SolveTimeChart.jsx    # Recharts line chart of solve times
+    VideoPlayer.jsx       # Embedded video player for recordings
+  hooks/
+    useMetadata.js        # Fetches metadata.json from CloudFront
+  config.js               # CloudFront URL + puzzle type list
+```
+
+## Getting Started
+
+```bash
+npm install
+npm run dev
+```
+
+## Environment Variables
+
+Create a `.env` file in the project root:
+
+```
+VITE_CLOUDFRONT_URL=https://your-cloudfront-domain.cloudfront.net
+```
+
+## Scripts
+
+| Command | Description |
+|---|---|
+| `npm run dev` | Start local dev server |
+| `npm run build` | Build for production |
+| `npm run preview` | Preview production build |
+| `npm run lint` | Run ESLint |
